@@ -27,19 +27,23 @@ gallery.addEventListener('click', onOpenModal);
 
 function onOpenModal(evt) {
     evt.preventDefault();
-
   if (evt.target.nodeName !== "IMG") {
     return;
-  }
-   
-    const instance = basicLightbox.create(`
-    <img src="" class = "modal">
-`);
-    
+  }    
     instance.element().querySelector('.modal').src = evt.target.dataset.source;
     instance.show();
-}
+};
+const instance = basicLightbox.create(`
+    <img src="" class = "modal">
+`);
 
+gallery.addEventListener("keydown", closeModal);
+
+function closeModal(evt) {
+    if (evt.code === 'Escape') {
+        instance.close();
+    }
+};
 
 
 
